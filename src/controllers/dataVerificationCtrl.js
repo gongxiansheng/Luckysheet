@@ -274,7 +274,7 @@ const dataVerificationCtrl = {
             let last = Store.luckysheet_select_save[Store.luckysheet_select_save.length - 1];
             let rowIndex = last.row_focus;
             let colIndex = last.column_focus;
-
+            formula.rangetosheet = Store.currentSheetIndex;
             $("#luckysheet-rich-text-editor").text(value);
             formula.updatecell(rowIndex, colIndex);
 

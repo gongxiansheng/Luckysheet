@@ -184,6 +184,7 @@ const sheetmanage = {
 
         return curindex;
     },
+    // 获取当前sheet表 索引
     getCurSheet: function() {
         if (Store.luckysheetfile.length) {
             let hasActive = false, indexs = []
@@ -772,8 +773,11 @@ const sheetmanage = {
         let _this = this;
 
         _this.getCurSheet();
+        // 要渲染的表对象
         let file = Store.luckysheetfile[_this.getSheetIndex(Store.currentSheetIndex)];
+        // 生成对应单元格数组来存放数据 由row/column 组成的二维数组
         _this.nulldata = datagridgrowth([], Store.defaultrowNum, Store.defaultcolumnNum);
+        // 把数据填充到上面的 nulldata
         let data = _this.buildGridData(file);
 
         //初始化的时候 记录选区
@@ -781,7 +785,6 @@ const sheetmanage = {
         file.jfgird_select_save = file.jfgird_select_save || [];
         file.jfgird_select_save.forEach(item=>select_save.push({"row":item.row,"column":item.column}));
         file.luckysheet_select_save = select_save;
-        
         this.sheetParamRestore(file, data);
 
         let r2 = Store.luckysheet_select_save[0].row[1], 
@@ -875,7 +878,8 @@ const sheetmanage = {
 
                     // Store toolbar button width value
                     menuToolBarWidth();
-
+                    
+                    // 插入dom节点
                     luckysheetsizeauto();
 
                     //等待滚动条dom宽高加载完成后 初始化滚动位置
@@ -1208,7 +1212,6 @@ const sheetmanage = {
 
         _this.storeSheetParamALL();
         _this.setCurSheet(index);
-
   
         if (!!file.isPivotTable) {
             Store.luckysheetcurrentisPivotTable = true;
