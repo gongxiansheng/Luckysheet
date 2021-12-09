@@ -368,7 +368,7 @@ const server = {
 	        //连接关闭时触发
 	        _this.websocket.onclose = function(e){
 				console.info(locale().websocket.close);
-				if(e.code === 1000){
+				if(e.code === 1000 || e.code === 1006){
 					clearInterval(_this.retryTimer)
 					_this.retryTimer = null
 				}else{
