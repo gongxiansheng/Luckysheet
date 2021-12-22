@@ -40,7 +40,6 @@ import Mandarin from 'flatpickr/dist/l10n/zh.js'
 import { initListener } from './controllers/listener';
 import { hideloading, showloading } from './global/loading.js';
 import { luckysheetextendData } from './global/extend.js';
-
 let luckysheet = {};
 
 // mount api
@@ -66,6 +65,7 @@ luckysheet.create = function (setting) {
 
     let loadurl = extendsetting.loadUrl,
         menu = extendsetting.menu,
+        loadUrlError = extendsetting.loadUrlError,
         title = extendsetting.title;
 
     let container = extendsetting.container;
@@ -185,6 +185,8 @@ luckysheet.create = function (setting) {
             if(server.allowUpdate){
                 server.openWebSocket();
             }
+        }).fail(function(error) {
+            loadUrlError(error)
         });
     }
 }
